@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Винодельня - Ассортимент</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- БАЗОВЫЕ НАСТРОЙКИ --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', Arial, sans-serif;
+            background-color: #ffffff;
+            color: #222222;
+            max-width: 1680px;
+            margin: 0 auto;
+        }
+
+        /* --- ШАПКА (копия из index.html) --- */
+        .header {
+            background-color: #ffffff;
+            padding: 15px 80px;
+            border-bottom: 1px solid #e5e5e5;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .logo-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            overflow: hidden;
+            background-color: transparent;
+        }
+
+        .logo-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .nav-menu {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: #972426;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .nav-menu a:hover {
+            text-decoration: underline;
+        }
+
+        .nav-menu a.active {
+            text-decoration: underline;
+            font-weight: 700;
+        }
+
+        .header-right {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+        }
+
+        /* --- КНОПКИ --- */
+        .btn {
+            padding: 10px 22px;
+            font-size: 15px;
+            font-weight: 500;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            border: 2px solid transparent;
+            transition: all 0.2s ease;
+            font-family: 'Montserrat', Arial, sans-serif;
+        }
+
+        .btn-outline-burgundy {
+            background-color: transparent;
+            color: #972426;
+            border-color: #972426;
+        }
+
+        .btn-outline-burgundy:hover {
+            background-color: #972426;
+            color: #ffffff;
+        }
+
+        .btn-solid-burgundy {
+            background-color: #972426;
+            color: #ffffff;
+            border-color: #972426;
+        }
+
+        .btn-solid-burgundy:hover {
+            background-color: #7a1d1f;
+            border-color: #7a1d1f;
+        }
+
+        .btn-white-burgundy {
+            background-color: #ffffff;
+            color: #972426;
+            border-color: #972426;
+        }
+
+        .btn-white-burgundy:hover {
+            background-color: #972426;
+            color: #ffffff;
+        }
+
+        /* --- СТРАНИЦА КАТАЛОГА --- */
+        .catalog-page {
+            background-color: #FBF9EC;
+            padding: 60px 80px 80px;
+        }
+
+        .catalog-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: #222222;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .catalog-subtitle {
+            font-size: 18px;
+            font-weight: 400;
+            color: #555555;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .catalog-card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .catalog-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .catalog-card-image {
+            width: 100%;
+            height: 220px;
+            background-color: #e0dcd6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: #888888;
+            overflow: hidden;
+        }
+
+        .catalog-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .catalog-card-body {
+            padding: 20px 20px 25px;
+        }
+
+        .catalog-card-body h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #222222;
+            margin-bottom: 8px;
+        }
+
+        .catalog-card-body .type {
+            font-size: 14px;
+            font-weight: 400;
+            color: #972426;
+            margin-bottom: 10px;
+        }
+
+        .catalog-card-body .description {
+            font-size: 14px;
+            font-weight: 400;
+            color: #555555;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .catalog-card-body .price {
+            font-size: 20px;
+            font-weight: 700;
+            color: #972426;
+            margin-bottom: 15px;
+        }
+
+        .catalog-card-body .btn {
+            width: 100%;
+            text-align: center;
+        }
+
+        /* --- ПОДВАЛ (копия из index.html) --- */
+        .footer {
+            background-color: #ffffff;
+            padding: 0 80px;
+            height: 501px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            position: relative;
+            border-top: 1px solid #e5e5e5;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 80px;
+            height: 192px;
+            position: relative;
+        }
+
+        .footer-logo {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 101px;
+            height: 101px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            z-index: 2;
+            overflow: hidden;
+            background-color: transparent;
+        }
+
+        .footer-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .footer-links-left {
+            display: flex;
+            gap: 19px;
+            align-items: center;
+            z-index: 1;
+        }
+
+        .footer-links-left a {
+            font-size: 15px;
+            font-weight: 700;
+            color: #222222;
+            text-decoration: none;
+        }
+
+        .footer-links-left a:hover {
+            color: #972426;
+        }
+
+        .footer-links-right {
+            display: flex;
+            gap: 19px;
+            align-items: center;
+            z-index: 1;
+        }
+
+        .footer-links-right a {
+            font-size: 15px;
+            font-weight: 700;
+            color: #222222;
+            text-decoration: none;
+        }
+
+        .footer-links-right a:hover {
+            color: #972426;
+        }
+
+        .footer-divider {
+            width: 100%;
+            max-width: 1520px;
+            height: 1px;
+            background-color: #cccccc;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-bottom {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding-top: 80px;
+            flex: 1;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 21px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .footer-social-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: #972426;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+            text-decoration: none;
+        }
+
+        .footer-social-btn:hover {
+            transform: scale(1.1);
+            background-color: #7a1d1f;
+        }
+
+        .footer-social-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: #ffffff;
+        }
+
+        .footer-copyright {
+            font-size: 15px;
+            font-weight: 400;
+            color: #222222;
+            text-align: center;
+            margin-top: 40px;
+            max-width: 700px;
+            width: 100%;
+        }
+
+        /* --- МОДАЛЬНОЕ ОКНО --- */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background-color: #ffffff;
+            max-width: 600px;
+            width: 90%;
+            padding: 40px;
+            border-radius: 12px;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            cursor: pointer;
+            color: #972426;
+            background: none;
+            border: none;
+            font-weight: 700;
+            transition: transform 0.2s ease;
+        }
+
+        .modal-close:hover {
+            transform: scale(1.2);
+        }
+
+        .modal-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #222222;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .modal-content .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .modal-content .form-group label {
+            display: block;
+            font-size: 15px;
+            font-weight: 500;
+            color: #222222;
+            margin-bottom: 5px;
+        }
+
+        .modal-content .form-group input,
+        .modal-content .form-group select,
+        .modal-content .form-group textarea {
+            width: 100%;
+            padding: 10px 15px;
+            font-size: 15px;
+            font-family: 'Montserrat', Arial, sans-serif;
+            border: 2px solid #dddddd;
+            border-radius: 6px;
+            transition: border-color 0.2s ease;
+        }
+
+        .modal-content .form-group input:focus,
+        .modal-content .form-group select:focus,
+        .modal-content .form-group textarea:focus {
+            outline: none;
+            border-color: #972426;
+        }
+
+        .modal-content .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .modal-content .btn {
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================ -->
+    <!-- ====================== ШАПКА ================================ -->
+    <!-- ============================================================ -->
+    <header class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <a href="index.html" class="logo-circle">
+                    <img src="images/logotip.png" alt="Логотип">
+                </a>
+                <ul class="nav-menu">
+    <li><a href="about.html">О нас</a></li>
+    <li><a href="catalog.html" class="active">Ассортимент</a></li>
+    <li><a href="index.html#excursions">Экскурсии</a></li>
+    <li><a href="index.html#page2">Галерея</a></li>
+    <li><a href="index.html#page3">Контакты</a></li>
+</ul>
+            </div>
+            <div class="header-right">
+                <a href="#" class="btn btn-outline-burgundy" onclick="openModal(); return false;">Зарегистрироваться</a>
+                <a href="#" class="btn btn-solid-burgundy" onclick="openModal(); return false;">Записаться на экскурсию</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- ====================== КАТАЛОГ ============================== -->
+    <!-- ============================================================ -->
+    <section class="catalog-page">
+        <h1 class="catalog-title">🍷 Наш ассортимент</h1>
+        <p class="catalog-subtitle">Лучшие сорта вин, созданные с заботой о каждой детали</p>
+
+        <div class="catalog-grid">
+
+            <!-- Вино 1 -->
+            <div class="catalog-card">
+                <div class="catalog-card-image">
+                    <img src="images/wine1.jpg" alt="Каберне Совиньон" onerror="this.style.display='none'; this.parentElement.innerHTML='🍇 Каберне Совиньон'">
+                </div>
+                <div class="catalog-card-body">
+                    <h3>Каберне Совиньон</h3>
+                    <div class="type">Красное, сухое</div>
+                    <div class="description">Насыщенный вкус с нотами чёрной смородины и дуба.</div>
+                    <div class="price">2 500 ₽</div>
+                    <a href="#" class="btn btn-solid-burgundy" onclick="openModal(); return false;">Заказать</a>
+                </div>
+            </div>
+
+            <!-- Вино 2 -->
+            <div class="catalog-card">
+                <div class="catalog-card-image">
+                    <img src="images/wine2.jpg" alt="Шардоне" onerror="this.style.display='none'; this.parentElement.innerHTML='🍇 Шардоне'">
+                </div>
+                <div class="catalog-card-body">
+                    <h3>Шардоне</h3>
+                    <div class="type">Белое, сухое</div>
+                    <div class="description">Элегантный вкус с оттенками зелёного яблока и цитрусов.</div>
+                    <div class="price">2 200 ₽</div>
+                    <a href="#" class="btn btn-solid-burgundy" onclick="openModal(); return false;">Заказать</a>
+                </div>
+            </div>
+
+            <!-- Вино 3 -->
+            <div class="catalog-card">
+                <div class="catalog-card-image">
+                    <img src="images/wine3.jpg" alt="Пино Нуар" onerror="this.style.display='none'; this.parentElement.innerHTML='🍇 Пино Нуар'">
+                </div>
+                <div class="catalog-card-body">
+                    <h3>Пино Нуар</h3>
+                    <div class="type">Красное, сухое</div>
+                    <div class="description">Изысканный аромат с тонами вишни и лесных ягод.</div>
+                    <div class="price">3 200 ₽</div>
+                    <a href="#" class="btn btn-solid-burgundy" onclick="openModal(); return false;">Заказать</a>
+                </div>
+            </div>
+
+            <!-- Вино 4 -->
+            <div class="catalog-card">
+                <div class="catalog-card-image">
+                    <img src="images/wine4.jpg" alt="Рислинг" onerror="this.style.display='none'; this.parentElement.innerHTML='🍇 Рислинг'">
+                </div>
+                <div class="catalog-card-body">
+                    <h3>Рислинг</h3>
+                    <div class="type">Белое, полусухое</div>
+                    <div class="description">Свежий вкус с цветочными и медовыми нюансами.</div>
+                    <div class="price">2 800 ₽</div>
+                    <a href="#" class="btn btn-solid-burgundy" onclick="openModal(); return false;">Заказать</a>
+                </div>
+            </div>
+
+            <!-- Вино 5 -->
+            <div class="catalog-card">
+                <div class="catalog-card-image">
+                    <img src="images/wine5.jpg" alt="Мерло" onerror="this.style.display='none'; this.parentElement.innerHTML='🍇 Мерло'">
+                </div>
+                <div class="catalog-card-body">
+                    <h3>Мерло</h3>
+                    <div class="type">Красное, сухое</div>
+                    <div class="description">Мягкий, бархатистый вкус с оттенками сливы и шоколада.</div>
+                    <div class="price">2 700 ₽</div>
+                    <a href="#" class="btn btn-solid-burgundy" onclick="openModal(); return false;">Заказать</a>
+                </div>
+            </div>
+
+            <!-- Вино 6 -->
+            <div class="catalog-card">
+                <div class="catalog-card-image">
+                    <img src="images/wine6.jpg" alt="Совиньон Блан" onerror="this.style.display='none'; this.parentElement.innerHTML='🍇 Совиньон Блан'">
+                </div>
+                <div class="catalog-card-body">
+                    <h3>Совиньон Блан</h3>
+                    <div class="type">Белое, сухое</div>
+                    <div class="description">Освежающий вкус с нотами крыжовника и трав.</div>
+                    <div class="price">2 400 ₽</div>
+                    <a href="#" class="btn btn-solid-burgundy" onclick="openModal(); return false;">Заказать</a>
+                </div>
+            </div>
+
+            <!-- Вино 7 -->
+            <div class="catalog-card">
+                <div class="catalog-card-image">
+                    <img src="images/wine7.jpg" alt="Красностоп" onerror="this.style.display='none'; this.parentElement.innerHTML='🍇 Красностоп'">
+                </div>
+                <div class="catalog-card-body">
+                    <h3>Красностоп</h3>
+                    <div class="type">Красное, сухое</div>
+                    <div class="description">Аутентичный вкус с пряными и ягодными акцентами.</div>
+                    <div class="price">3 500 ₽</div>
+                    <a href="#" class="btn btn-solid-burgundy" onclick="openModal(); return false;">Заказать</a>
+                </div>
+            </div>
+
+            <!-- Вино 8 -->
+            <div class="catalog-card">
+                <div class="catalog-card-image">
+                    <img src="images/wine8.jpg" alt="Мускат" onerror="this.style.display='none'; this.parentElement.innerHTML='🍇 Мускат'">
+                </div>
+                <div class="catalog-card-body">
+                    <h3>Мускат</h3>
+                    <div class="type">Белое, сладкое</div>
+                    <div class="description">Игристое вино с ярким цветочным ароматом.</div>
+                    <div class="price">3 800 ₽</div>
+                    <a href="#" class="btn btn-solid-burgundy" onclick="openModal(); return false;">Заказать</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ====================== МОДАЛЬНОЕ ОКНО ======================= -->
+    <!-- ============================================================ -->
+    <div id="modal" class="modal-overlay" onclick="closeModalOutside(event)">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">✕</button>
+            <h2 class="modal-title">Заказать вино</h2>
+            <form id="registrationForm">
+                <div class="form-group">
+                    <label for="modal-name">Ваше имя</label>
+                    <input type="text" id="modal-name" placeholder="Иван Иванов" required>
+                </div>
+                <div class="form-group">
+                    <label for="modal-email">Электронная почта</label>
+                    <input type="email" id="modal-email" placeholder="ivan@mail.ru" required>
+                </div>
+                <div class="form-group">
+                    <label for="modal-phone">Телефон</label>
+                    <input type="tel" id="modal-phone" placeholder="+7 (999) 123-45-67" required>
+                </div>
+                <div class="form-group">
+                    <label for="modal-comment">Комментарий к заказу</label>
+                    <textarea id="modal-comment" placeholder="Укажите название вина и количество..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-solid-burgundy">Отправить заказ</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- ====================== ПОДВАЛ =============================== -->
+    <!-- ============================================================ -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="footer-links-left">
+                <a href="#">Мобильное приложение</a>
+                <a href="#">Электронная почта</a>
+                <a href="#">Спонсоры</a>
+            </div>
+            <div class="footer-logo">
+                <img src="images/logotip.png" alt="Логотип">
+            </div>
+            <div class="footer-links-right">
+                <a href="#">FAQ</a>
+                <a href="#">Наш Блог</a>
+                <a href="#">Отзывы</a>
+            </div>
+        </div>
+
+        <div class="footer-divider"></div>
+
+        <div class="footer-bottom">
+            <div class="footer-socials">
+                <a href="https://t.me/Mazavi_Zak_Vinches" target="_blank" class="footer-social-btn" aria-label="Telegram">
+                    <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                </a>
+                <a href="https://www.instagram.com/maria_vinches?igsh=MTR1ODh6b3N6aTRzNA%3D%3D&utm_source=qr" target="_blank" class="footer-social-btn" aria-label="Instagram">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+                </a>
+                <a href="https://vk.com/erena1999" target="_blank" class="footer-social-btn" aria-label="VK">
+                    <svg viewBox="0 0 24 24"><path d="M13.162 18.994c.609 0 .858-.406.851-.915-.031-1.917.714-2.949 2.059-1.604 1.488 1.488 1.796 2.519 3.603 2.519h3.2c.808 0 1.126-.26 1.126-.668 0-.863-1.421-2.386-2.625-3.504-1.686-1.565-1.765-1.602-.313-3.486 1.463-1.895 2.408-3.059 2.408-4.429 0-.394.033-.713-.213-.94-.246-.229-.688-.349-1.325-.349h-3.2c-.709 0-.972.153-1.198.514-.227.362-.868 1.833-1.577 3.325-.989 2.08-1.354 2.341-1.648 2.341-.482 0-.616-.456-.616-1.365 0-1.874.276-4.097-.523-4.097-.37 0-.697.176-1.113.579-.378.366-.704.846-.704 1.455 0 .973.407 2.918.27 3.284-.11.305-.311.486-.864.486-1.451 0-3.912-1.51-4.831-3.728-.291-.701-.942-.893-1.478-.893h-2.57c-.591 0-.764.216-.764.466 0 .606.836 2.405 2.248 4.141 1.532 1.886 3.571 2.904 4.662 3.382.375.164.582.393.582.615 0 .222-.288.723-.478 1.019-.189.296-.322.628.147.628h3.18z"/></svg>
+                </a>
+                <a href="https://youtu.be/_kngYRbMge8?si=uTGrPKAZGcnEmvSq" target="_blank" class="footer-social-btn" aria-label="YouTube">
+                    <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                </a>
+            </div>
+            <div class="footer-copyright">©Sytsevich_M. 2026. Not for sale!</div>
+        </div>
+    </footer>
+
+    <!-- ============================================================ -->
+    <!-- ====================== JAVASCRIPT ============================ -->
+    <!-- ============================================================ -->
+    <script>
+        function openModal() {
+            document.getElementById('modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function closeModalOutside(event) {
+            if (event.target === document.getElementById('modal')) {
+                closeModal();
+            }
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Спасибо! Ваш заказ отправлен. Мы свяжемся с вами в ближайшее время.');
+            closeModal();
+            this.reset();
+        });
+    </script>
+
+</body>
+</html>

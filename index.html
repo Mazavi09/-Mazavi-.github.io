@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Винодельня - Главная</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- БАЗОВЫЕ НАСТРОЙКИ --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', Arial, sans-serif;
+            background-color: #ffffff;
+            color: #222222;
+            max-width: 1680px;
+            margin: 0 auto;
+        }
+
+        /* --- ШАПКА --- */
+        .header {
+            background-color: #ffffff;
+            padding: 15px 80px;
+            border-bottom: 1px solid #e5e5e5;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .logo-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            overflow: hidden;
+            background-color: transparent;
+        }
+
+        .logo-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .nav-menu {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: #972426;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .nav-menu a:hover {
+            text-decoration: underline;
+        }
+
+        .nav-menu a.active {
+            text-decoration: underline;
+            font-weight: 700;
+        }
+
+        .header-right {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+        }
+
+        /* --- КНОПКИ --- */
+        .btn {
+            padding: 10px 22px;
+            font-size: 15px;
+            font-weight: 500;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            border: 2px solid transparent;
+            transition: all 0.2s ease;
+            font-family: 'Montserrat', Arial, sans-serif;
+        }
+
+        .btn-outline-burgundy {
+            background-color: transparent;
+            color: #972426;
+            border-color: #972426;
+        }
+
+        .btn-outline-burgundy:hover {
+            background-color: #972426;
+            color: #ffffff;
+        }
+
+        .btn-white-burgundy {
+            background-color: #ffffff;
+            color: #972426;
+            border-color: #972426;
+        }
+
+        .btn-white-burgundy:hover {
+            background-color: #972426;
+            color: #ffffff;
+        }
+
+        .btn-solid-burgundy {
+            background-color: #972426;
+            color: #ffffff;
+            border-color: #972426;
+        }
+
+        .btn-solid-burgundy:hover {
+            background-color: #7a1d1f;
+            border-color: #7a1d1f;
+        }
+
+        .btn-white-outline {
+            background-color: transparent;
+            color: #ffffff;
+            border-color: #ffffff;
+        }
+
+        .btn-white-outline:hover {
+            background-color: #ffffff;
+            color: #972426;
+        }
+
+        /* --- СТРАНИЦА 1: HERO --- */
+        .hero-video {
+            background-image: url('images/video.jpg');
+            background-size: cover;
+            background-position: center;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 80px;
+            position: relative;
+        }
+
+        .hero-video::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+        }
+
+        .play-button {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background-color: #972426;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            text-decoration: none;
+        }
+
+        .play-button:hover {
+            transform: scale(1.05);
+        }
+
+        .play-button svg {
+            width: 30px;
+            height: 30px;
+            fill: #ffffff;
+            margin-left: 4px;
+        }
+
+        .hero-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 30px;
+            line-height: 1.3;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        /* --- СТРАНИЦА 1: ЭКСКУРСИИ (2x2) --- */
+        .excursions-section {
+            background-color: #FBF9EC;
+            padding: 50px 80px 60px;
+        }
+
+        .section-title-left {
+            font-size: 32px;
+            font-weight: 400;
+            color: #222222;
+            margin-bottom: 40px;
+            text-align: left;
+        }
+
+        .excursions-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px 148px;
+        }
+
+        .excursion-card {
+            background-color: transparent;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .excursion-card h3 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #222222;
+            margin-bottom: 12px;
+        }
+
+        .excursion-card p {
+            font-size: 16px;
+            font-weight: 400;
+            color: #444444;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .excursion-card p span {
+            display: block;
+        }
+
+        .excursion-card .btn {
+            margin-top: auto;
+            align-self: flex-start;
+        }
+
+        /* --- СТРАНИЦА 2: ДВЕ ПОЛОВИНЫ --- */
+        .half-top {
+            background-color: #ECEAC7;
+            height: 600px;
+            display: flex;
+            align-items: center;
+            padding: 0 80px;
+        }
+
+        .half-top-content {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 70px;
+        }
+
+        .half-top-image {
+            width: 770px;
+            height: 440px;
+            flex-shrink: 0;
+            border-radius: 8px;
+            background-image: url('images/pic1.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .half-top-text {
+            flex: 1;
+            max-width: 686px;
+        }
+
+        .half-top-text h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #222222;
+            margin-bottom: 20px;
+        }
+
+        .half-top-text p {
+            font-size: 18px;
+            font-weight: 400;
+            color: #222222;
+            line-height: 1.7;
+        }
+
+        .half-top-text p span {
+            display: block;
+        }
+
+        .half-bottom {
+            background-color: #DDA293;
+            height: 600px;
+            display: flex;
+            align-items: center;
+            padding: 0 80px;
+        }
+
+        .half-bottom-content {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 70px;
+            flex-direction: row-reverse;
+        }
+
+        .half-bottom-image {
+            width: 770px;
+            height: 440px;
+            flex-shrink: 0;
+            border-radius: 8px;
+            background-image: url('images/pic2.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .half-bottom-text {
+            flex: 1;
+            max-width: 686px;
+        }
+
+        .half-bottom-text h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #222222;
+            margin-bottom: 20px;
+        }
+
+        .half-bottom-text p {
+            font-size: 18px;
+            font-weight: 400;
+            color: #222222;
+            line-height: 1.7;
+        }
+
+        .half-bottom-text p span {
+            display: block;
+        }
+
+        /* --- СТРАНИЦА 3: КОНТАКТЫ + КАРТА --- */
+        .contacts-page {
+            background-color: #FBF9EC;
+            min-height: 738px;
+            padding: 120px 144px 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .contacts-title {
+            font-size: 32px;
+            font-weight: 400;
+            color: #222222;
+            text-align: center;
+            max-width: 1392px;
+            width: 100%;
+            margin-bottom: 30px;
+        }
+
+        .contacts-subtitle {
+            font-size: 28px;
+            font-weight: 400;
+            color: #222222;
+            text-align: center;
+            max-width: 1392px;
+            width: 100%;
+            margin-bottom: 50px;
+        }
+
+        .contacts-wrapper {
+            display: flex;
+            gap: 60px;
+            width: 100%;
+            max-width: 1392px;
+            align-items: flex-start;
+        }
+
+        .contacts-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .contacts-info-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 18px;
+            font-weight: 500;
+            color: #222222;
+        }
+
+        .contacts-info-item .icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #972426;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .contacts-info-item a {
+            color: #972426;
+            text-decoration: none;
+        }
+
+        .contacts-info-item a:hover {
+            text-decoration: underline;
+        }
+
+        .contacts-map {
+            flex: 1.5;
+            min-height: 300px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid #972426;
+        }
+
+        .contacts-map iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 300px;
+            border: 0;
+            display: block;
+        }
+
+        .contacts-socials {
+            display: flex;
+            gap: 136px;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            max-width: 1392px;
+            padding: 0 395px;
+            margin-top: 60px;
+        }
+
+        .social-btn {
+            width: 120px;
+            height: 120px;
+            border-radius: 26%;
+            background-color: #972426;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+
+        .social-btn:hover {
+            transform: scale(1.05);
+            background-color: #7a1d1f;
+        }
+
+        .social-btn svg {
+            width: 60px;
+            height: 60px;
+            fill: #ffffff;
+        }
+
+        /* --- ПОДВАЛ --- */
+        .footer {
+            background-color: #ffffff;
+            padding: 0 80px;
+            height: 501px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            position: relative;
+            border-top: 1px solid #e5e5e5;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 80px;
+            height: 192px;
+            position: relative;
+        }
+
+        .footer-logo {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 101px;
+            height: 101px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            z-index: 2;
+            overflow: hidden;
+            background-color: transparent;
+        }
+
+        .footer-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .footer-links-left {
+            display: flex;
+            gap: 19px;
+            align-items: center;
+            z-index: 1;
+        }
+
+        .footer-links-left a {
+            font-size: 15px;
+            font-weight: 700;
+            color: #222222;
+            text-decoration: none;
+        }
+
+        .footer-links-left a:hover {
+            color: #972426;
+        }
+
+        .footer-links-right {
+            display: flex;
+            gap: 19px;
+            align-items: center;
+            z-index: 1;
+        }
+
+        .footer-links-right a {
+            font-size: 15px;
+            font-weight: 700;
+            color: #222222;
+            text-decoration: none;
+        }
+
+        .footer-links-right a:hover {
+            color: #972426;
+        }
+
+        .footer-divider {
+            width: 100%;
+            max-width: 1520px;
+            height: 1px;
+            background-color: #cccccc;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-bottom {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding-top: 80px;
+            flex: 1;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 21px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .footer-social-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: #972426;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+            text-decoration: none;
+        }
+
+        .footer-social-btn:hover {
+            transform: scale(1.1);
+            background-color: #7a1d1f;
+        }
+
+        .footer-social-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: #ffffff;
+        }
+
+        .footer-copyright {
+            font-size: 15px;
+            font-weight: 400;
+            color: #222222;
+            text-align: center;
+            margin-top: 40px;
+            max-width: 700px;
+            width: 100%;
+        }
+
+        /* --- МОДАЛЬНОЕ ОКНО ДЛЯ ФОРМЫ --- */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background-color: #ffffff;
+            max-width: 600px;
+            width: 90%;
+            padding: 40px;
+            border-radius: 12px;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            cursor: pointer;
+            color: #972426;
+            background: none;
+            border: none;
+            font-weight: 700;
+            transition: transform 0.2s ease;
+        }
+
+        .modal-close:hover {
+            transform: scale(1.2);
+        }
+
+        .modal-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #222222;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .modal-content .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .modal-content .form-group label {
+            display: block;
+            font-size: 15px;
+            font-weight: 500;
+            color: #222222;
+            margin-bottom: 5px;
+        }
+
+        .modal-content .form-group input,
+        .modal-content .form-group select,
+        .modal-content .form-group textarea {
+            width: 100%;
+            padding: 10px 15px;
+            font-size: 15px;
+            font-family: 'Montserrat', Arial, sans-serif;
+            border: 2px solid #dddddd;
+            border-radius: 6px;
+            transition: border-color 0.2s ease;
+        }
+
+        .modal-content .form-group input:focus,
+        .modal-content .form-group select:focus,
+        .modal-content .form-group textarea:focus {
+            outline: none;
+            border-color: #972426;
+        }
+
+        .modal-content .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .modal-content .btn {
+            width: 100%;
+            text-align: center;
+        }
+
+        /* --- АНИМАЦИЯ ДЛЯ КАРТОЧЕК КАТАЛОГА --- */
+        .catalog-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .catalog-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================ -->
+    <!-- ====================== ШАПКА ================================ -->
+    <!-- ============================================================ -->
+    <header class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <a href="index.html" class="logo-circle">
+                    <img src="images/logotip.png" alt="Логотип">
+                </a>
+                <ul class="nav-menu">
+    <li><a href="about.html">О нас</a></li>
+    <li><a href="catalog.html">Ассортимент</a></li>
+    <li><a href="index.html#excursions">Экскурсии</a></li>
+    <li><a href="index.html#page2">Галерея</a></li>
+    <li><a href="index.html#page3">Контакты</a></li>
+</ul>
+            </div>
+            <div class="header-right">
+                <a href="#" class="btn btn-outline-burgundy" onclick="openModal(); return false;">Зарегистрироваться</a>
+                <a href="#" class="btn btn-solid-burgundy" onclick="openModal(); return false;">Записаться на экскурсию</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- ====================== СТРАНИЦА 1 =========================== -->
+    <!-- ============================================================ -->
+    <section id="page1">
+
+        <!-- HERO -->
+        <section class="hero-video">
+            <div class="hero-content">
+                <a href="https://youtu.be/_kngYRbMge8?si=uTGrPKAZGcnEmvSq" target="_blank" class="play-button" aria-label="Смотреть видео">
+                    <svg viewBox="0 0 24 24">
+                        <polygon points="5,3 19,12 5,21" />
+                    </svg>
+                </a>
+                <h1 class="hero-title">Посмотрите видеоэкскурсию<br>с высоты птичьего полета</h1>
+                <div class="hero-buttons">
+                    <a href="https://yandex.ru/maps/org/imeniye_sikory/169470132467/?l=sat%2Cstv%2Csta&ll=37.599903%2C44.879224&panorama%5Bair%5D=true&panorama%5Bdirection%5D=348.140481%2C-8.952181&panorama%5Bfull%5D=true&panorama%5Bid%5D=1298219217_775234495_23_1494071417&panorama%5Bpoint%5D=37.630956%2C44.867686&panorama%5Bspan%5D=95.996745%2C45.923391&z=14" target="_blank" class="btn btn-solid-burgundy">Смотреть в 360°</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ЭКСКУРСИИ -->
+        <section id="excursions" class="excursions-section">
+            <h2 class="section-title-left">На экскурсий по нашим садам и винодельням вы можете:</h2>
+            <div class="excursions-grid">
+                <div class="excursion-card">
+                    <h3>Полюбоваться прекрасным видом</h3>
+                    <p>
+                        <span>Пройдите среди виноградных садов на склонах холмов.</span>
+                        <span>Ощутите тишину природу и аромат земли, напитанной солнцем.</span>
+                        <span>Каждый поворот тропинки открывает новые, живописные панорамы.</span>
+                    </p>
+                    <a href="about.html" class="btn btn-white-burgundy">Смотреть больше</a>
+                </div>
+                <div class="excursion-card">
+                    <h3>Увидеть все этапы приготовления</h3>
+                    <p>
+                        <span>Мы покажем весь путь — от сбора урожая до розлива в бутылки.</span>
+                        <span>Вы станете свидетелем тонкой работы винодела на каждом этапе.</span>
+                        <span>Это уникальная возможность заглянуть за кулисы ремесла.</span>
+                    </p>
+                    <a href="about.html" class="btn btn-white-burgundy">Смотреть больше</a>
+                </div>
+                <div class="excursion-card">
+                    <h3>Пройти по главным местам создания вина</h3>
+                    <p>
+                        <span>Вы посетите винные погреба, где выдерживаются лучшие сорта.</span>
+                        <span>Познакомитесь с нашей историей и увидите старинные прессы.</span>
+                        <span>Это маршрут, где каждая стена хранит аромат зрелого винограда.</span>
+                    </p>
+                    <a href="about.html" class="btn btn-white-burgundy">Смотреть больше</a>
+                </div>
+                <div class="excursion-card">
+                    <h3>Посетить дегустацию наших вин</h3>
+                    <p>
+                        <span>В завершение вы попробуете отборные сорта прямо на винодельне.</span>
+                        <span>Мы расскажем, как распознать вкусовые ноты и выбрать своё вино.</span>
+                        <span>Никакой спешки — только вкус, атмосфера и тёплое общение.</span>
+                    </p>
+                    <a href="about.html" class="btn btn-white-burgundy">Смотреть больше</a>
+                </div>
+            </div>
+        </section>
+
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ====================== СТРАНИЦА 2 =========================== -->
+    <!-- ============================================================ -->
+    <section id="page2" class="page-two">
+
+        <div class="half-top">
+            <div class="half-top-content">
+                <div class="half-top-image"></div>
+                <div class="half-top-text">
+                    <h2>Вино начинается с заботы</h2>
+                    <p>
+                        <span>Виноделие для нас — не просто ремесло, а продолжение рук, чувствующих землю.</span>
+                        <span>Каждая гроздь проходит через ладони с уважением и вниманием к деталям.</span>
+                        <span>Мы не используем машины для сбора — только ручной труд и опыт поколений.</span>
+                        <span>Созревший на солнце виноград срезается в нужный момент — ни раньше, ни позже.</span>
+                        <span>Это тонкий баланс между временем, природой и человеческой чуткостью.</span>
+                        <span>В таких мелочах и рождается качество, которое невозможно подделать.</span>
+                        <span>Здесь, у самой лозы, начинается путь вина — искреннего, настоящего.</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="half-bottom">
+            <div class="half-bottom-content">
+                <div class="half-bottom-image"></div>
+                <div class="half-bottom-text">
+                    <h2>Экскурсия, в которую хочется вернуться</h2>
+                    <p>
+                        <span>Это не просто прогулка — это путешествие в мир вина с открытыми глазами.</span>
+                        <span>Вы пройдёте между виноградных рядов, заглянете в прохладные погреба.</span>
+                        <span>Каждая остановка — история: о сортах, климате, земле и людях.</span>
+                        <span>Мы рассказываем не лекциями, а с душой, как для своих.</span>
+                        <span>Можно задавать вопросы, пробовать, трогать, вдыхать аромат бочек.</span>
+                        <span>Это редкая возможность прикоснуться к настоящему, без маркетинга и спешки.</span>
+                        <span>И почувствовать, почему у хорошего вина всегда есть корни.</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ====================== СТРАНИЦА 3: КОНТАКТЫ ================= -->
+    <!-- ============================================================ -->
+    <section id="page3" class="contacts-page">
+        <h1 class="contacts-title">Отправляйтесь в путешествие сейчас</h1>
+        <p class="contacts-subtitle">
+            Напишите нам удобным способом, используя контакты ниже, и запишитесь на незабываемую экскурсию в мир благородного напитка и его создания
+        </p>
+
+        <div class="contacts-wrapper">
+            <div class="contacts-info">
+                <div class="contacts-info-item">
+                    <span class="icon">📱</span>
+                    <span>Мобильное приложение: <a href="#">+7 (962) 762-66-82</a></span>
+                </div>
+                <div class="contacts-info-item">
+                    <span class="icon">✉️</span>
+                    <span>Электронная почта: <a href="mailto:sytsevich09@mail.ru">sytsevich09@mail.ru</a></span>
+                </div>
+                <div class="contacts-info-item">
+                    <span class="icon">📍</span>
+                    <span>Адрес: г. Новороссийск, ул. 24-й км, дом 2</span>
+                </div>
+                <div class="contacts-info-item">
+                    <span class="icon">🕐</span>
+                    <span>Часы работы: Ежедневно с 10:00 до 20:00</span>
+                </div>
+            </div>
+
+            <div class="contacts-map">
+                <iframe 
+                    src="https://yandex.ru/map-widget/v1/?um=constructor%3A1a2b3c4d5e6f7g8h9i0j&source=constructor" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+
+        <div class="contacts-socials">
+            <!-- Telegram -->
+            <a href="https://t.me/Mazavi_Zak_Vinches" target="_blank" class="social-btn" aria-label="Telegram">
+                <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+            </a>
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/maria_vinches?igsh=MTR1ODh6b3N6aTRzNA%3D%3D&utm_source=qr" target="_blank" class="social-btn" aria-label="Instagram">
+                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+            </a>
+            <!-- VK -->
+            <a href="https://vk.com/erena1999" target="_blank" class="social-btn" aria-label="VK">
+                <svg viewBox="0 0 24 24"><path d="M13.162 18.994c.609 0 .858-.406.851-.915-.031-1.917.714-2.949 2.059-1.604 1.488 1.488 1.796 2.519 3.603 2.519h3.2c.808 0 1.126-.26 1.126-.668 0-.863-1.421-2.386-2.625-3.504-1.686-1.565-1.765-1.602-.313-3.486 1.463-1.895 2.408-3.059 2.408-4.429 0-.394.033-.713-.213-.94-.246-.229-.688-.349-1.325-.349h-3.2c-.709 0-.972.153-1.198.514-.227.362-.868 1.833-1.577 3.325-.989 2.08-1.354 2.341-1.648 2.341-.482 0-.616-.456-.616-1.365 0-1.874.276-4.097-.523-4.097-.37 0-.697.176-1.113.579-.378.366-.704.846-.704 1.455 0 .973.407 2.918.27 3.284-.11.305-.311.486-.864.486-1.451 0-3.912-1.51-4.831-3.728-.291-.701-.942-.893-1.478-.893h-2.57c-.591 0-.764.216-.764.466 0 .606.836 2.405 2.248 4.141 1.532 1.886 3.571 2.904 4.662 3.382.375.164.582.393.582.615 0 .222-.288.723-.478 1.019-.189.296-.322.628.147.628h3.18z"/></svg>
+            </a>
+            <!-- YouTube -->
+            <a href="https://youtu.be/_kngYRbMge8?si=uTGrPKAZGcnEmvSq" target="_blank" class="social-btn" aria-label="YouTube">
+                <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ====================== МОДАЛЬНОЕ ОКНО (ФОРМА) =============== -->
+    <!-- ============================================================ -->
+    <div id="modal" class="modal-overlay" onclick="closeModalOutside(event)">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">✕</button>
+            <h2 class="modal-title">Записаться на экскурсию</h2>
+            <form id="registrationForm">
+                <div class="form-group">
+                    <label for="modal-name">Ваше имя</label>
+                    <input type="text" id="modal-name" placeholder="Иван Иванов" required>
+                </div>
+                <div class="form-group">
+                    <label for="modal-email">Электронная почта</label>
+                    <input type="email" id="modal-email" placeholder="ivan@mail.ru" required>
+                </div>
+                <div class="form-group">
+                    <label for="modal-phone">Телефон</label>
+                    <input type="tel" id="modal-phone" placeholder="+7 (999) 123-45-67" required>
+                </div>
+                <div class="form-group">
+                    <label for="modal-date">Дата экскурсии</label>
+                    <input type="date" id="modal-date" required>
+                </div>
+                <div class="form-group">
+                    <label for="modal-people">Количество человек</label>
+                    <select id="modal-people">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6+">6+</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="modal-comment">Комментарий</label>
+                    <textarea id="modal-comment" placeholder="Ваши пожелания..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-solid-burgundy">Записаться</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- ====================== ПОДВАЛ =============================== -->
+    <!-- ============================================================ -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="footer-links-left">
+                <a href="#">Мобильное приложение</a>
+                <a href="#">Электронная почта</a>
+                <a href="#">Спонсоры</a>
+            </div>
+            <div class="footer-logo">
+                <img src="images/logotip.png" alt="Логотип">
+            </div>
+            <div class="footer-links-right">
+                <a href="#">FAQ</a>
+                <a href="#">Наш Блог</a>
+                <a href="#">Отзывы</a>
+            </div>
+        </div>
+
+        <div class="footer-divider"></div>
+
+        <div class="footer-bottom">
+            <div class="footer-socials">
+                <a href="https://t.me/Mazavi_Zak_Vinches" target="_blank" class="footer-social-btn" aria-label="Telegram">
+                    <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                </a>
+                <a href="https://www.instagram.com/maria_vinches?igsh=MTR1ODh6b3N6aTRzNA%3D%3D&utm_source=qr" target="_blank" class="footer-social-btn" aria-label="Instagram">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+                </a>
+                <a href="https://vk.com/erena1999" target="_blank" class="footer-social-btn" aria-label="VK">
+                    <svg viewBox="0 0 24 24"><path d="M13.162 18.994c.609 0 .858-.406.851-.915-.031-1.917.714-2.949 2.059-1.604 1.488 1.488 1.796 2.519 3.603 2.519h3.2c.808 0 1.126-.26 1.126-.668 0-.863-1.421-2.386-2.625-3.504-1.686-1.565-1.765-1.602-.313-3.486 1.463-1.895 2.408-3.059 2.408-4.429 0-.394.033-.713-.213-.94-.246-.229-.688-.349-1.325-.349h-3.2c-.709 0-.972.153-1.198.514-.227.362-.868 1.833-1.577 3.325-.989 2.08-1.354 2.341-1.648 2.341-.482 0-.616-.456-.616-1.365 0-1.874.276-4.097-.523-4.097-.37 0-.697.176-1.113.579-.378.366-.704.846-.704 1.455 0 .973.407 2.918.27 3.284-.11.305-.311.486-.864.486-1.451 0-3.912-1.51-4.831-3.728-.291-.701-.942-.893-1.478-.893h-2.57c-.591 0-.764.216-.764.466 0 .606.836 2.405 2.248 4.141 1.532 1.886 3.571 2.904 4.662 3.382.375.164.582.393.582.615 0 .222-.288.723-.478 1.019-.189.296-.322.628.147.628h3.18z"/></svg>
+                </a>
+                <a href="https://youtu.be/_kngYRbMge8?si=uTGrPKAZGcnEmvSq" target="_blank" class="footer-social-btn" aria-label="YouTube">
+                    <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                </a>
+            </div>
+            <div class="footer-copyright">©Sytsevich_M. 2026. Not for sale!</div>
+        </div>
+    </footer>
+
+    <!-- ============================================================ -->
+    <!-- ====================== JAVASCRIPT ============================ -->
+    <!-- ============================================================ -->
+    <script>
+        function openModal() {
+            document.getElementById('modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function closeModalOutside(event) {
+            if (event.target === document.getElementById('modal')) {
+                closeModal();
+            }
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Спасибо! Ваша заявка отправлена. Мы свяжемся с вами в ближайшее время.');
+            closeModal();
+            this.reset();
+        });
+    </script>
+
+</body>
+</html>
